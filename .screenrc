@@ -1,0 +1,12 @@
+# Suppress startup message
+startup_message off
+
+# enable 256 colors
+term screen-256color
+
+# An alternative hardstatus to display a bar at the bottom listing the
+# windownames and highlighting the current windowname in blue.
+hardstatus alwayslastline "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "
+
+# Execute .bash_profile on startup
+#shell -$SHELL
