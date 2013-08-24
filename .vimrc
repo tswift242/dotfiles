@@ -86,7 +86,7 @@ syntax on
 
 """ Color scheme and theme
 set t_Co=256 "enable 256 colors
-"colorscheme desert256
+colorscheme desert
 set background=dark
 
 set encoding=utf8
