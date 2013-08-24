@@ -8,15 +8,16 @@ set nocompatible
 set history=200
 
 """ File types
-" detect file type
-filetype on
-" load filetype plugins
-filetype plugin on
-" load file-specific indent files
-filetype indent on
+filetype on "detect file type
+filetype plugin on "load filetype plugins
+filetype indent on "load file-specific indent files
 
-" Update file when modified elsewhere
+" Update file when modified elsewhere on leaving buffer
 set autoread
+" Controls rate at which CursorHold is triggered (in ms)
+set updatetime=10000
+" Check for changes on disk to file in buffer after user inactivity
+autocmd CursorHold * checktime
 
 " Make , the map leader
 let mapleader = ","
@@ -51,17 +52,11 @@ set wildmenu
 set wildmode=list:longest,full
 set wildignore=*~,*.o,*.exe,*.class,*.pyc
 
-" Incremental Search - start searching as soon as first character typed
-set incsearch
-
-" Ignore case when searching
-set ignorecase
-
-" Override ignorecase when search contains UC chars
-set smartcase
-
-" Highlight search results
-set hlsearch
+""" Better search
+set incsearch "Incremental Search - search as you type
+set ignorecase "Ignore case when searching
+set smartcase "Override ignorecase when search contains UC chars
+set hlsearch "Highlight search results
 
 " Show matching brackets/parentheses
 set showmatch
@@ -89,13 +84,20 @@ set novisualbell
 " Enable syntax highlighting
 syntax on
 
-"colorscheme desert
+""" Color scheme and theme
+set t_Co=256 "enable 256 colors
+"colorscheme desert256
 set background=dark
+
+set encoding=utf8
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Backups, swaps, and undos
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" No backup files
+set nobackup
+
 """ Save undo history in file
 " create ~/.vim/undo if it doesn't already exit and ignore all errors/output
 silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
@@ -124,6 +126,23 @@ set smartindent
 " Wrap lines
 set wrap
 
+" show unnecessary white space
+let c_space_errors = 1
+let java_space_errors = 1
+let python_space_errors = 1
+let ruby_space_errors = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Buffer views
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" unix/slash added for better windows-unix compatibility
+set viewoptions=folds,options,cursor,unix,slash
+
+" save and load views (states) for buffers automatically
+autocmd BufWinLeave ?* mkview
+autocmd BufWinEnter ?* silent loadview
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Status line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -135,7 +154,7 @@ set statusline=%t       "filename
 set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, "file encoding
 set statusline+=%{&ff}] "file format
 set statusline+=%y      "filetype
-set statusline+=\ %h      "help file flag: [help]
+set statusline+=%h      "help file flag: [help]
 set statusline+=%m      "modified flag: [+]
 set statusline+=%r      "read only flag: [RO]
 set statusline+=\ Buffer:%n
@@ -143,7 +162,7 @@ set statusline+=\ \ CWD:%{getcwd()}		"current directory
 set statusline+=%=      "left/right fields separator
 set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P    "percent through file
+set statusline+=\ %P\     "percent through file
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -159,9 +178,12 @@ set spell
 " Remap ESC to ii in insert mode
 inoremap ii <ESC>`^
 
-" Remap ^ and $ to ,j and ,k
-nnoremap <leader>j ^ 
-nnoremap <leader>k $ 
+" Remap ^ and $ to ctrl-h and ctrl-l -- this works
+nnoremap <C-h> ^
+nnoremap <C-l> $
+" Remap ^ and $ to ,j and ,k -- DOESN'T QUITE WORK
+"nnoremap <leader>j ^ 
+"nnoremap <leader>k $ 
 
 nnoremap <leader>l :ls<CR>
 nnoremap <leader>n :bn<CR>
@@ -171,13 +193,7 @@ nnoremap <leader>p :bp<CR>
 nnoremap <leader>ev :e $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Helper functions -- needed for statusline
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
-endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Helper functions 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

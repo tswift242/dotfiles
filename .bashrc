@@ -37,7 +37,7 @@
 # set -o ignoreeof
 #
 # Use case-insensitive filename globbing
-# shopt -s nocaseglob
+shopt -s nocaseglob
 #
 # Make bash append rather than overwrite the history on disk
 # shopt -s histappend
@@ -196,4 +196,17 @@ alias ls='ls -h --color=tty'                 # classify files in colour
 # }
 # 
 # alias cd=cd_func
+
+
+
+export EDITOR='vim'
+
+# have terminal use 256 colors if available
+if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+        export TERM='xterm-256color'
+else
+        export TERM='xterm-color'
+fi
+
+# add javac to path
 export PATH=$PATH:"/cygdrive/C/Program Files/Java/jdk1.7.0_06/bin/"
