@@ -1,14 +1,24 @@
 # Suppress startup message
-startup_message off
-
-vbell off
+startup_message off #default: on
+# Detach screen instead of terminating it upon hangup
+autodetach on       #default: on
+# Turn off screen flashes
+vbell off           #default: off
+# Separate lines by LF only when copying/pasting btw windows
+crlf off            #default: off
 
 # Enable 256 colors
 term screen-256color
 
-# Default shell that's started in each window -- CAUSES CRASH
-#shell bash
+# Default shell that's started in each window
 #shell -$SHELL
+shell bash
+
+# Lines of history to be stored in scrollback buffer
+defscrollback 1000  #default: 100
+
+# open screen window and execute following command
+#screen -t EDIT 0 vim
 
 # Editors will restore window display on exit instead of leaving
 # existing text in place
