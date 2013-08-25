@@ -335,4 +335,6 @@ else
     hi Error         cterm=bold ctermfg=7 ctermbg=1
 endif
 
+set background=dark
+
 " vim: set fdl=0 fdm=marker:
