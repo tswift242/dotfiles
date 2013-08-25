@@ -1,12 +1,19 @@
 # Suppress startup message
 startup_message off
 
-# enable 256 colors
+vbell off
+
+# Enable 256 colors
 term screen-256color
+
+# Default shell that's started in each window -- CAUSES CRASH
+#shell bash
+#shell -$SHELL
+
+# Editors will restore window display on exit instead of leaving
+# existing text in place
+altscreen on
 
 # An alternative hardstatus to display a bar at the bottom listing the
 # windownames and highlighting the current windowname in blue.
 hardstatus alwayslastline "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "
-
-# Execute .bash_profile on startup
-#shell -$SHELL
