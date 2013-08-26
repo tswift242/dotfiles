@@ -208,5 +208,14 @@ else
         export TERM='xterm-color'
 fi
 
+dowork()
+{
+    #cd to main project directory -- CHANGE THIS when starting new project
+    cd C:/Users/tswift/Perforce/tswift_AH-TSWIFT_779/bizapps/qe_test/WebStoreGuiTest/main/
+    #start screen session with name 'work'
+    screen -S work
+}
+
 # add javac to path
-export PATH=$PATH:"/cygdrive/C/Program Files/Java/jdk1.7.0_06/bin/"
+#export PATH=$PATH:"/cygdrive/C/Program Files/Java/jdk1.7.0_06/bin/" #home
+export PATH="/cygdrive/C/Program Files/Java/jdk1.7.0_21/bin/":$PATH #work

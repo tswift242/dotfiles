@@ -175,7 +175,7 @@ set spell
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remap ESC to ii in insert mode
+" Remap ESC to ii
 inoremap ii <ESC>`^
 " Remap _ to ;;
 inoremap ;; _
@@ -196,6 +196,10 @@ nnoremap <leader>p :bp<CR>
 " edit and source vimrc (this file)
 nnoremap <leader>ev :e $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" upper/lowercase word
+nnoremap <leader>u guiw 
+nnoremap <leader>U gUiw 
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
