@@ -177,6 +177,10 @@ set spell
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap ESC to ii in insert mode
 inoremap ii <ESC>`^
+" Remap _ to ;;
+inoremap ;; _
+" Make insert mode pasting easier
+inoremap <C-r><C-r> <C-r>"
 
 " Remap ^ and $ to ctrl-h and ctrl-l -- this works
 nnoremap <C-h> ^
