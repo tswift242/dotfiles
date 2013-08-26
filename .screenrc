@@ -1,3 +1,6 @@
+# ==========================================================================
+# General
+# ==========================================================================
 # Suppress startup message
 startup_message off #default: on
 # Detach screen instead of terminating it upon hangup
@@ -10,20 +13,30 @@ crlf off            #default: off
 # Enable 256 colors
 term screen-256color
 
+# ==========================================================================
+# Define default settings for newly created windows
+# ==========================================================================
+# Lines of history to be stored in scrollback buffer
+defscrollback 1000  #default: 100
 # Default shell that's started in each window
 #shell -$SHELL
 shell bash
+# Set file encoding
+defutf8 on
 
-# Lines of history to be stored in scrollback buffer
-defscrollback 1000  #default: 100
-
-# open screen window and execute following command
-#screen -t EDIT 0 vim
+# ==========================================================================
+# Initial Windows
+# ==========================================================================
+# open screen windows with these titles and execute following commands (if any)
+screen -t bash0 0
+screen -t vim 1
+# make window 0 current window
+select 0
 
 # Editors will restore window display on exit instead of leaving
 # existing text in place
 altscreen on
 
 # An alternative hardstatus to display a bar at the bottom listing the
-# windownames and highlighting the current windowname in blue.
+# window names and numbers, and highlighting the current window name in red.
 hardstatus alwayslastline "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "
