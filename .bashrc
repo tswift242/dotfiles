@@ -218,4 +218,5 @@ dowork()
 
 # add javac to path
 #export PATH=$PATH:"/cygdrive/C/Program Files/Java/jdk1.7.0_06/bin/" #home
-export PATH="/cygdrive/C/Program Files/Java/jdk1.7.0_21/bin/":$PATH #work
+#export PATH="/cygdrive/C/Program Files/Java/jdk1.7.0_21/bin/":$PATH #work
+export PATH=$JAVA_HOME"/bin/":$PATH #should work for both
