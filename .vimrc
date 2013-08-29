@@ -1,9 +1,52 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " use vim settings instead of vi settings
 set nocompatible
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vundle
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" :BundleList		- list bundles
+" :BundleInstall	- install/update bundles
+" :BundleClean		- remove bundles
+" :BundleSearch		- search for bundle
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Install vundle for first time if necessary
+if !isdirectory(expand("~/.vim/bundle/vundle"))
+	!mkdir -p ~/.vim/bundle
+	!git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+	let s:bootstrap=1 "indicates vundle needed to be installed
+endif
+
+
+filetype off "required
+
+" Setup Vunvle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+
+""""" My Bundles """"""
+" file and buffer finder
+Bundle 'kien/ctrlp.vim'
+"let g:ctrlp_by_filename = 1
+" easy forward motion navigation
+Bundle 'Lokaltog/vim-easymotion'
+" syntax error highlighter
+Bundle 'scrooloose/syntastic'
+" TODO: check out vim-fugitive
+
+
+" Install bundles with vundle if necessary
+if exists("s:bootstrap") && s:bootstrap
+	unlet s:bootstrap
+	BundleInstall
+endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Command/search history
 set history=200
 
@@ -50,7 +93,7 @@ set scrolloff=4
 " Enhanced tab autocompletion
 set wildmenu
 set wildmode=list:longest,full
-set wildignore=*~,*.o,*.exe,*.class,*.pyc
+set wildignore=*~,*.o,*.exe,*.class,*.pyc,*.swp,*zip
 
 """ Better search
 set incsearch "Incremental Search - search as you type
@@ -99,11 +142,13 @@ set encoding=utf8
 set nobackup
 
 """ Save undo history in file
-" create ~/.vim/undo if it doesn't already exit and ignore all errors/output
-silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
-set undodir=~/.vim/undo
-set undofile
-set undolevels=100
+if has("persistent_undo")
+	" create ~/.vim/undo if it doesn't already exist and ignore all errors/output
+	silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
+	set undodir=~/.vim/undo
+	set undofile
+	set undolevels=100
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -158,7 +203,7 @@ set statusline+=%h      "help file flag: [help]
 set statusline+=%m      "modified flag: [+]
 set statusline+=%r      "read only flag: [RO]
 set statusline+=\ Buffer:%n
-set statusline+=\ \ CWD:%{getcwd()}		"current directory
+"set statusline+=\ \ CWD:%{getcwd()}		"current directory
 set statusline+=%=      "left/right fields separator
 set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
@@ -170,6 +215,9 @@ set statusline+=\ %P\     "percent through file
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn on spell checking
 set spell
+
+" Specify file to store words deemed correctly spelled -- NEED V7.4??
+"spellfile+=~/.vim/spell/en.utf-8.add
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
