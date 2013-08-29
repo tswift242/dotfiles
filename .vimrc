@@ -29,11 +29,16 @@ Bundle 'gmarik/vundle'
 """"" My Bundles """"""
 " file and buffer finder
 Bundle 'kien/ctrlp.vim'
-"let g:ctrlp_by_filename = 1
+let g:ctrlp_by_filename = 1
+let g:ctrlp_root_markers = ['pom.xml'] "find maven projects
+let g:ctrlp_custom_ignore = {
+	\ 'dir': '\v[\/](\.settings|target)$',
+	\ }
 " easy forward motion navigation
 Bundle 'Lokaltog/vim-easymotion'
 " syntax error highlighter
 Bundle 'scrooloose/syntastic'
+"let g:syntastic_mode_map = { 'mode': 'passive'} "only find errors when asked
 " TODO: check out vim-fugitive
 
 
@@ -93,7 +98,7 @@ set scrolloff=4
 " Enhanced tab autocompletion
 set wildmenu
 set wildmode=list:longest,full
-set wildignore=*~,*.o,*.exe,*.class,*.pyc,*.swp,*zip
+set wildignore=*~,*.o,*.class,*.pyc,*.swp,*.zip,*.jar
 
 """ Better search
 set incsearch "Incremental Search - search as you type
@@ -187,6 +192,7 @@ set viewoptions=folds,options,cursor,unix,slash
 " save and load views (states) for buffers automatically
 autocmd BufWinLeave ?* mkview
 autocmd BufWinEnter ?* silent loadview
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Status line
