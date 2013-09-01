@@ -19,7 +19,7 @@ endif
 
 filetype off "required
 
-" Setup Vunvle
+" setup Vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -27,18 +27,14 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 """"" My Bundles """"""
-" file and buffer finder
-Bundle 'kien/ctrlp.vim'
-let g:ctrlp_by_filename = 1
-let g:ctrlp_root_markers = ['pom.xml'] "find maven projects
-let g:ctrlp_custom_ignore = {
-	\ 'dir': '\v[\/](\.settings|target)$',
-	\ }
 " easy forward motion navigation
 Bundle 'Lokaltog/vim-easymotion'
+" file, buffer, MRU finder
+Bundle 'kien/ctrlp.vim'
 " syntax error highlighter
 Bundle 'scrooloose/syntastic'
-"let g:syntastic_mode_map = { 'mode': 'passive'} "only find errors when asked
+" enhanced statusline -- TODO: figure out how this works
+Bundle 'Lokaltog/powerline'
 " TODO: check out vim-fugitive
 
 
@@ -47,6 +43,24 @@ if exists("s:bootstrap") && s:bootstrap
 	unlet s:bootstrap
 	BundleInstall
 endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Bundle Options
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CtrlP
+let g:ctrlp_by_filename = 1
+let g:ctrlp_root_markers = ['pom.xml'] "find maven projects
+let g:ctrlp_custom_ignore = {
+	\ 'dir': '\v[\/](\.settings|target|\.git)$',
+	\ }
+
+" Syntastic
+"let g:syntastic_mode_map = { 'mode': 'passive'} "only find errors when asked
+
+" Powerline
+let g:Powerline_symbols = 'fancy'
+let g:Powerline_colorscheme='desert'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -66,6 +80,9 @@ set autoread
 set updatetime=10000
 " Check for changes on disk to file in buffer after user inactivity
 autocmd CursorHold * checktime
+
+" Abbreviate file messages
+set shortmess=a
 
 " Make , the map leader
 let mapleader = ","
@@ -98,7 +115,9 @@ set scrolloff=4
 " Enhanced tab autocompletion
 set wildmenu
 set wildmode=list:longest,full
-set wildignore=*~,*.o,*.class,*.pyc,*.swp,*.zip,*.jar
+set wildignore+=*.o,*.class,*.pyc			"compiled files
+set wildignore+=*.zip,*.tar*,*.rar,*.jar	"compressed files
+set wildignore+=*~,*.swp					"temps and backups
 
 """ Better search
 set incsearch "Incremental Search - search as you type
@@ -124,6 +143,10 @@ set guicursor=a:blinkon0
 " Don't beep or flash screen upon error
 set noerrorbells
 set novisualbell
+
+set splitright
+" Resize splits when vim window resized
+autocmd VimResized * :wincmd =
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -168,6 +191,8 @@ set tabstop=4
 set softtabstop=4
 " indent ops << and >> move text this many spaces
 set shiftwidth=4
+" round indent to multiple of shiftwidth
+set shiftround
 
 " Auto indent new lines
 set autoindent
@@ -190,8 +215,8 @@ let ruby_space_errors = 1
 set viewoptions=folds,options,cursor,unix,slash
 
 " save and load views (states) for buffers automatically
-autocmd BufWinLeave ?* mkview
-autocmd BufWinEnter ?* silent loadview
+autocmd BufWinLeave * mkview
+autocmd BufWinEnter * silent loadview
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
