@@ -1,3 +1,14 @@
 [user]
 	name = Thomas Swift
 	email = tswift@u.rochester.edu
+[core]
+	excludesfile = $HOME/.gitignore_global
+	autocrlf = input
+[color]
+	ui = true
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = red
+[credential]
+	helper = cache --timeout=3600
