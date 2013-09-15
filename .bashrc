@@ -4,7 +4,7 @@ shopt -s nocaseglob
 # Append to history instead of overwriting
 shopt -s histappend
 # When changing directory small typos can be ignored by bash
-#shopt -s cdspell
+shopt -s cdspell
 
 
 ### History Options ###
@@ -17,8 +17,8 @@ export HISTIGNORE="[ \t]*:&:[fb]g:exit:ls:ll:cd:pwd:.{2,}"
 
 
 ### Aliases ###
-# if [ -f "${HOME}/.bash_aliases" ]; then
-#   source "${HOME}/.bash_aliases"
+# if [ -f "~/.bash_aliases" ]; then
+#   source "~/.bash_aliases"
 # fi
 
 alias ls='ls -hA --color=auto'                 # classify files in colour
@@ -62,6 +62,6 @@ fi
 
 
 ### Functions ###
-# if [ -f "${HOME}/.bash_functions" ]; then
-#   source "${HOME}/.bash_functions"
+# if [ -f "~/.bash_functions" ]; then
+#   source "~/.bash_functions"
 # fi
