@@ -1,17 +1,19 @@
 ### Shell Options ###
 # Use case-insensitive filename globbing
 shopt -s nocaseglob
-
+# Append to history instead of overwriting
+shopt -s histappend
 # When changing directory small typos can be ignored by bash
-# shopt -s cdspell
+#shopt -s cdspell
 
 
 ### History Options ###
+# Increase history from default of 500
+export HISTSIZE=1000
 # Don't put duplicate lines in the history.
-export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
-
-# Ignore some controlling instructions
-export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls:ll:cd'
+export HISTCONTROL=ignoredups
+# Ignore these commands when recording history
+export HISTIGNORE="[ \t]*:&:[fb]g:exit:ls:ll:cd:pwd:.{2,}"
 
 
 ### Aliases ###
@@ -22,11 +24,16 @@ export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls:ll:cd'
 alias ls='ls -hA --color=auto'                 # classify files in colour
 alias ll='ls -l'                              # long list
 
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
 alias diff='colordiff'
 
-alias grep='grep --color'                     # show differences in colour
-alias egrep='egrep --color=auto'              # show differences in colour
-alias fgrep='fgrep --color=auto'              # show differences in colour
+# Colorize grep
+alias grep='grep --color'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 
 
 ### Miscellaneous ###
