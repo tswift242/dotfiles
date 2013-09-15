@@ -287,6 +287,10 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>u guiw 
 nnoremap <leader>U gUiw 
 
+" CtrlP
+nnoremap <leader>cpb :CtrlPBuffer<CR>
+nnoremap <leader>cpm :CtrlPMRU<CR>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Helper functions 
