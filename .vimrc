@@ -33,6 +33,13 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'kien/ctrlp.vim'
 " syntax error highlighter
 Bundle 'scrooloose/syntastic'
+" easy commenting
+Bundle 'scrooloose/nerdcommenter'
+" show marks
+"Bundle 'ShowMarks'
+Bundle 'kshenoy/vim-signature'
+" search tab completion
+Bundle 'SearchComplete'
 " enhanced statusline -- TODO: figure out how this works
 Bundle 'Lokaltog/powerline'
 " TODO: check out vim-fugitive
