@@ -21,40 +21,46 @@ export HISTIGNORE="[ \t]*:&:[fb]g:exit:ls:ll:cd:pwd:.{2,}"
 #   source "~/.bash_aliases"
 # fi
 
-alias ls='ls -hA --color=auto'                 # classify files in colour
-alias ll='ls -l'                              # long list
+alias ls="ls -hA --color=auto"                 # classify files in colour
+alias ll="ls -l"                              # long list
 
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
 
-alias diff='colordiff'
+alias diff="colordiff"
 
 # Colorize grep
-alias grep='grep --color'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
+alias grep="grep --color"
+alias egrep="egrep --color=auto"
+alias fgrep="fgrep --color=auto"
+
+# Easy editing and sourcing bashrc/vimrc
+alias eb="${EDITOR} ~/.bashrc"
+alias sb="source ~/.bashrc"
+alias ev="${EDITOR} ~/.vimrc"
+alias sv="source ~/.vimrc"
 
 
 ### Miscellaneous ###
 # Language and locale
-export LANG='en_US.UTF-8'
-export LC_ALL='en_US.UTF-8'
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 
 # Add color
 export CLICOLOR=1
 
-export EDITOR='vim'
+export EDITOR="vim"
 
 # Have terminal use 256 colors if available
 if [ -e /usr/share/terminfo/x/xterm-256color ]; then
-        export TERM='xterm-256color'
+        export TERM="xterm-256color"
 else
-        export TERM='xterm-color'
+        export TERM="xterm-color"
 fi
 
 # Add javac to path if using cygwin
-if [ $OSTYPE == 'cygwin' ]; then
+if [ $OSTYPE == "cygwin" ]; then
 	export PATH=$PATH:"/cygdrive/C/Program Files/Java/jdk1.7.0_06/bin/" #home
 	#export PATH="/cygdrive/C/Program Files/Java/jdk1.7.0_21/bin/":$PATH #work
 	#export PATH=$JAVA_HOME"/bin/":$PATH #should work for both
