@@ -293,5 +293,9 @@ nnoremap <leader>cpm :CtrlPMRU<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Helper functions 
+" Other
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Local config
+if filereadable(expand("~/.vimrc.local"))
+	source ~/.vimrc.local
+endif

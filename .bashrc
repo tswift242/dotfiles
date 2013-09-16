@@ -17,9 +17,7 @@ export HISTIGNORE="[ \t]*:&:[fb]g:exit:ls:ll:cd:pwd:.{2,}"
 
 
 ### Aliases ###
-# if [ -f "~/.bash_aliases" ]; then
-#   source "~/.bash_aliases"
-# fi
+#[[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
 
 alias ls="ls -hA --color=auto"                 # classify files in colour
 alias ll="ls -l"                              # long list
@@ -40,6 +38,8 @@ alias eb="${EDITOR} ~/.bashrc"
 alias sb="source ~/.bashrc"
 alias ev="${EDITOR} ~/.vimrc"
 alias sv="source ~/.vimrc"
+
+###### TODO: added git aliases and separate into different files
 
 
 ### Miscellaneous ###
@@ -68,6 +68,7 @@ fi
 
 
 ### Functions ###
-# if [ -f "~/.bash_functions" ]; then
-#   source "~/.bash_functions"
-# fi
+#[[ -f ~/.bash_functions ]] && source ~/.bash_functions
+
+# Local config
+[[ -f ~/.bashrc.local ]] && source ~/.bashrc.local
