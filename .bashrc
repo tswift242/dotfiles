@@ -40,6 +40,10 @@ alias ev="${EDITOR} ~/.vimrc"
 alias sv="source ~/.vimrc"
 
 ###### TODO: added git aliases and separate into different files
+for file in $(find ~/bash -type f); do
+	source $file
+done
+
 #shopt -s nullglob #handle case where * expands to nothing
 #for dir in ~/bash/{aliases,exports}; do
 	#if [ -d "$dir"]; then
