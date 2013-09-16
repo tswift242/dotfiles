@@ -63,6 +63,7 @@ let g:ctrlp_custom_ignore = {
 	\ }
 
 " Syntastic
+let g:syntastic_check_on_open=1 "check for errors when opening file
 "let g:syntastic_mode_map = { 'mode': 'passive'} "only find errors when asked
 
 " Powerline
@@ -152,6 +153,7 @@ set noerrorbells
 set novisualbell
 
 set splitright
+set splitbelow
 " Resize splits when vim window resized
 autocmd VimResized * :wincmd =
 
@@ -274,6 +276,10 @@ nnoremap <C-l> $
 " Remap ^ and $ to ,j and ,k -- DOESN'T QUITE WORK
 "nnoremap <leader>j ^ 
 "nnoremap <leader>k $ 
+
+" Switch back to most recently used previous buffer/window
+nnoremap <leader>b <C-^>
+nnoremap <leader>w <C-w><C-w>
 
 nnoremap <leader>l :ls<CR>
 nnoremap <leader>n :bn<CR>
