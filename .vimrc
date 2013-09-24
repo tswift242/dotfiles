@@ -35,6 +35,10 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/syntastic'
 " easy commenting
 Bundle 'scrooloose/nerdcommenter'
+" easily changing matching pairs surrounding text
+Bundle 'tpope/vim-surround'
+" use . to repeat last plugin command -- for surround
+Bundle 'tpope/vim-repeat'
 " show marks
 "Bundle 'ShowMarks'
 Bundle 'kshenoy/vim-signature'
@@ -63,7 +67,7 @@ let g:ctrlp_custom_ignore = {
 	\ }
 
 " Syntastic
-let g:syntastic_check_on_open=1 "check for errors when opening file
+"let g:syntastic_check_on_open=1 "check for errors when opening file
 "let g:syntastic_mode_map = { 'mode': 'passive'} "only find errors when asked
 
 " Powerline
