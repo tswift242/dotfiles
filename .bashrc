@@ -33,7 +33,10 @@ alias grep="grep --color"
 alias egrep="egrep --color=auto"
 alias fgrep="fgrep --color=auto"
 
-# Easy editing and sourcing bashrc/vimrc
+# Fast making
+alias make="make -j"
+
+# Easy editing and sourcing bashrc/vimrc -- TODO: these don't work
 alias eb="${EDITOR} ~/.bashrc"
 alias sb="source ~/.bashrc"
 alias ev="${EDITOR} ~/.vimrc"
@@ -75,9 +78,8 @@ fi
 
 # Add javac to path if using cygwin
 if [ $OSTYPE == "cygwin" ]; then
-	export PATH=$PATH:"/cygdrive/C/Program Files/Java/jdk1.7.0_06/bin/" #home
-	#export PATH="/cygdrive/C/Program Files/Java/jdk1.7.0_21/bin/":$PATH #work
-	#export PATH=$JAVA_HOME"/bin/":$PATH #should work for both
+	#export PATH=$PATH:"/cygdrive/C/Program Files/Java/jdk1.7.0_06/bin/" #home
+	export PATH=$JAVA_HOME"/bin/":$PATH #should work for both
 fi
 
 
