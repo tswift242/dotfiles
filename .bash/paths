@@ -1,0 +1,4 @@
+# Add javac to path if using cygwin
+if [ $OSTYPE == "cygwin" ]; then
+	export PATH=$JAVA_HOME"/bin/":$PATH
+fi

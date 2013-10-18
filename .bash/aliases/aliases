@@ -1,0 +1,26 @@
+# Better file listing
+alias ls="ls -hA --color=auto"                 # classify files in colour
+alias ll="ls -l"                              # long list
+
+# Easier directory navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+alias diff="colordiff"
+
+# Colorize grep
+alias grep="grep --color"
+alias egrep="egrep --color=auto"
+alias fgrep="fgrep --color=auto"
+
+# Fast making
+alias make="make -j"
+
+alias cl="clear"
+
+# Easy editing and sourcing bashrc/vimrc -- TODO: these don't work
+alias eb="${EDITOR} ~/.bashrc"
+alias sb="source ~/.bashrc"
+alias ev="${EDITOR} ~/.vimrc"
+alias sv="source ~/.vimrc"
