@@ -6,7 +6,8 @@ shopt -s histappend
 # When changing directory small typos can be ignored by bash
 shopt -s cdspell
 
-[[ -f ~/.bash/aliases/aliases ]] && source ~/.bash/aliases/aliases
+[[ -f ~/.bash/aliases/general ]] && source ~/.bash/aliases/general
+[[ -f ~/.bash/aliases/git ]] && source ~/.bash/aliases/git
 [[ -f ~/.bash/exports ]] && source ~/.bash/exports
 [[ -f ~/.bash/functions ]] && source ~/.bash/functions
 [[ -f ~/.bash/paths ]] && source ~/.bash/paths

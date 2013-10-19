@@ -17,6 +17,9 @@
 	rr = remote rm
 	cl = clone
 	rmc = rm --cached
+	l = log --graph
+	lp = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	wc = whatchanged --graph
 [core]
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
