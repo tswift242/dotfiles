@@ -68,7 +68,7 @@ let g:ctrlp_custom_ignore = {
 
 " Syntastic
 "let g:syntastic_check_on_open=1 "check for errors when opening file
-"let g:syntastic_mode_map = { 'mode': 'passive'} "only find errors when asked
+let g:syntastic_mode_map = { 'mode': 'passive'} "only find errors when asked
 
 " Powerline
 let g:Powerline_symbols = 'fancy'
