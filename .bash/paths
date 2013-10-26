@@ -1,4 +1,5 @@
-# Add javac to path if using cygwin
+# Add javac and ant to path if using cygwin
 if [ $OSTYPE == "cygwin" ]; then
-	export PATH=$JAVA_HOME"/bin/":$PATH
+	export PATH=$JAVA_HOME"/bin":$PATH
+	export PATH=$ANT_HOME"/bin":$PATH
 fi
