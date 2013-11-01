@@ -22,7 +22,7 @@ alias cl="clear"
 alias edit="${EDITOR}"
 
 # Easy editing and sourcing bashrc/vimrc -- TODO: these don't work
-alias eb="${EDITOR} ~/.bashrc"
-alias sb="source ~/.bashrc"
-alias ev="${EDITOR} ~/.vimrc"
-alias sv="source ~/.vimrc"
+#alias eb="${EDITOR} ~/.bashrc"
+#alias sb="source ~/.bashrc"
+#alias ev="${EDITOR} ~/.vimrc"
+#alias sv="source ~/.vimrc"

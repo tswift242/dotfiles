@@ -42,6 +42,8 @@ Bundle 'tpope/vim-repeat'
 " show marks
 "Bundle 'ShowMarks'
 Bundle 'kshenoy/vim-signature'
+" switch between header and source
+Bundle 'vim-scripts/a.vim'
 " search tab completion
 Bundle 'SearchComplete'
 " enhanced statusline -- TODO: figure out how this works
@@ -289,6 +291,8 @@ nnoremap <leader>l :ls<CR>
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
 
+nnoremap <leader>cls :let @/=""<CR>
+
 " edit and source vimrc (this file)
 nnoremap <leader>ev :e $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
@@ -300,6 +304,11 @@ nnoremap <leader>U gUiw
 " CtrlP
 nnoremap <leader>cpb :CtrlPBuffer<CR>
 nnoremap <leader>cpm :CtrlPMRU<CR>
+
+" A.vim
+nnoremap <leader>ga gf:A<CR>
+nnoremap <leader>gas gf:AS<CR>
+nnoremap <leader>gav gf:AV<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
