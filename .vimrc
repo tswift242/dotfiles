@@ -94,6 +94,11 @@ set autoread
 set updatetime=10000
 " Check for changes on disk to file in buffer after user inactivity
 autocmd CursorHold * checktime
+" Automatically reload vimrc when modified
+augroup vimrc
+	au!
+	au BufWritePost .vimrc,vimrc source $MYVIMRC
+augroup END
 
 " Abbreviate file messages
 set shortmess=a
@@ -304,6 +309,12 @@ nnoremap <leader>U gUiw
 " CtrlP
 nnoremap <leader>cpb :CtrlPBuffer<CR>
 nnoremap <leader>cpm :CtrlPMRU<CR>
+
+" vim-signature
+nnoremap <leader>mn ]'
+nnoremap <leader>mp ['
+nnoremap <leader>mna ']
+nnoremap <leader>mpa '[
 
 " A.vim
 nnoremap <leader>ga gf:A<CR>

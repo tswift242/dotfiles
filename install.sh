@@ -47,9 +47,3 @@ if [ -f $bashrc ]; then
 	source $bashrc
 	echo "done"
 fi
-vimrc=~/.vimrc
-if [ -f $vimrc ]; then
-	echo -n "Sourcing $vimrc ... "
-	source $vimrc
-	echo "done"
-fi
