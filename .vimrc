@@ -229,7 +229,7 @@ let ruby_space_errors = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Buffer views
+" Buffer views and vim sessions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " unix/slash added for better windows-unix compatibility
 set viewoptions=folds,options,cursor,unix,slash
@@ -237,6 +237,9 @@ set viewoptions=folds,options,cursor,unix,slash
 " save and load views (states) for buffers automatically
 autocmd BufWinLeave * mkview
 autocmd BufWinEnter * silent loadview
+
+" save current vim session upon quitting vim
+autocmd VimLeave * mksession ~/.vim/sessions/session.vim
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -296,7 +299,10 @@ nnoremap <leader>l :ls<CR>
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
 
+" clear search results
 nnoremap <leader>cls :let @/=""<CR>
+" delete lhs of an assignment statement (including equals sign)
+nnoremap <leader>da df=x
 
 " edit and source vimrc (this file)
 nnoremap <leader>ev :e $MYVIMRC<CR>
@@ -313,8 +319,9 @@ nnoremap <leader>cpm :CtrlPMRU<CR>
 " vim-signature
 nnoremap <leader>mn ]'
 nnoremap <leader>mp ['
-nnoremap <leader>mna ']
-nnoremap <leader>mpa '[
+" TODO: these don't work
+"nnoremap <leader>mna ']
+"nnoremap <leader>mpa '[
 
 " A.vim
 nnoremap <leader>ga gf:A<CR>
