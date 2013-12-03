@@ -11,7 +11,7 @@ set nocompatible
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Install vundle for first time if necessary
 if !isdirectory(expand("~/.vim/bundle/vundle"))
-	!mkdir -p ~/.vim/bundle
+	call mkdir(expand("~/.vim/bundle"), "p")
 	!git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 	let s:bootstrap=1 "indicates vundle needed to be installed
 endif
@@ -191,8 +191,10 @@ set nobackup
 
 """ Save undo history in file
 if has("persistent_undo")
-	" create ~/.vim/undo if it doesn't already exist and ignore all errors/output
-	silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
+	" create ~/.vim/undo if it doesn't already exist
+	if !isdirectory(expand("~/.vim/undo"))
+		call mkdir(expand("~/.vim/undo"), "p")
+	endif
 	set undodir=~/.vim/undo
 	set undofile
 	set undolevels=100
@@ -238,8 +240,10 @@ set viewoptions=folds,options,cursor,unix,slash
 autocmd BufWinLeave * mkview
 autocmd BufWinEnter * silent loadview
 
-" save current vim session upon quitting vim
-autocmd VimLeave * mksession ~/.vim/sessions/session.vim
+" update session on quitting vim if session has already been created
+autocmd VimLeave * :call UpdateSession()
+map <leader>ms :call MakeSession()<CR>
+map <leader>ls :call LoadSession()<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -327,6 +331,50 @@ nnoremap <leader>mp ['
 nnoremap <leader>ga gf:A<CR>
 nnoremap <leader>gas gf:AS<CR>
 nnoremap <leader>gav gf:AV<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Creates a session
+function! MakeSession()
+	let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
+	if (filewritable(b:sessiondir) != 2)
+		"call mkdir(expand(b:sessiondir), "p")
+		exe "silent !mkdir -p " . b:sessiondir
+		redraw!
+	endif
+	let b:sessionfile = b:sessiondir . "/session.vim"
+	exe "mksession! " . b:sessionfile
+endfunction
+
+" Updates a session, BUT ONLY IF IT ALREADY EXISTS
+function! UpdateSession()
+	if argc() == 0
+		let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
+		let b:sessionfile = b:sessiondir . "/session.vim"
+		if (filewritable(b:sessionfile))
+			exe "mksession! " . b:sessionfile
+			"echo "updating session"
+		endif
+	endif
+endfunction
+
+" Loads a session if it exists
+function! LoadSession()
+	"if argc() == 0
+		let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
+		let b:sessionfile = b:sessiondir . "/session.vim"
+		if (filereadable(b:sessionfile))
+			exe "source " . b:sessionfile
+		else
+			"echo "No session loaded."
+		endif
+	"else
+		"let b:sessionfile = ""
+		"let b:sessiondir = ""
+	"endif
+endfunction
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
