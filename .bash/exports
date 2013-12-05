@@ -22,3 +22,12 @@ if [ -e /usr/share/terminfo/x/xterm-256color ]; then
 else
         export TERM="xterm-color"
 fi
+
+# Customize prompt
+# Prompt is as follows: [username@hostname: dir]\n$
+#if [ "$color_prompt" = yes ]; then
+	export PS1="\[\e[00;31m\][\[\e[0m\]\[\e[00;33m\]\u@\h\[\e[0m\]\[\e[00;37m\]: \[\e[0m\]\[\e[00;36m\]\w\[\e[0m\]\[\e[00;31m\]]\[\e[0m\]\[\e[00;34m\] (\[\e[0m\]\[\e[00;34m\]\@\[\e[0m\]\[\e[00;34m\])\n\[\e[0m\]\[\e[00;32m\]\$\[\e[0m\]\[\e[00;37m\] \[\e[0m\]"
+	#export PS1="\[\e[00;31m\][\[\e[0m\]\[\e[00;33m\]\u@\h\[\e[0m\]\[\e[00;37m\]: \[\e[0m\]\[\e[00;36m\]\w\[\e[0m\]\[\e[00;31m\]]\[\e[0m\]\[\e[00;37m\]\n\[\e[0m\]\[\e[00;32m\]\$\[\e[0m\] "
+#else
+	#export PS1="\[\e[00;37m\][\u@\h: \w]\n\$\[\e[0m\] "
+#fi
