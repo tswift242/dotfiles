@@ -134,9 +134,13 @@ set scrolloff=4
 " Enhanced tab autocompletion
 set wildmenu
 set wildmode=list:longest,full
-set wildignore+=*.o,*.class,*.pyc			"compiled files
-set wildignore+=*.zip,*.tar*,*.rar,*.jar	"compressed files
-set wildignore+=*~,*.swp					"temps and backups
+set wildignore+=.git							"version control directories
+set wildignore+=*.o,*.class,*.pyc,*.dll,*.exe	"compiled files
+set wildignore+=*.zip,*.tar*,*.rar,*.jar		"compressed files
+set wildignore+=*~,*.swp						"temps and backups
+set wildignore+=*.aux,*.synctex.gz				"latex files
+set wildignore+=*.bmp,*.gif,*.jpeg,*.jpg,*.png	"image files
+set wildignore+=*.pdf
 
 """ Better search
 set incsearch "Incremental Search - search as you type
