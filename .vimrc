@@ -81,7 +81,7 @@ let g:Powerline_colorscheme='desert'
 " General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Command/search history
-set history=200
+set history=500
 
 """ File types
 filetype on "detect file type
@@ -102,6 +102,8 @@ augroup END
 
 " Abbreviate file messages
 set shortmess=a
+
+set lazyredraw
 
 " Make , the map leader
 let mapleader = ","
@@ -292,9 +294,11 @@ inoremap ;; _
 " Make insert mode pasting easier
 inoremap <C-r><C-r> <C-r>"
 
-" Remap ^ and $ to ctrl-h and ctrl-l -- this works
+" Remap ^ and $ to ctrl-h and ctrl-l
 nnoremap <C-h> ^
 nnoremap <C-l> $
+vnoremap <C-h> ^
+vnoremap <C-l> $
 " Remap ^ and $ to ,j and ,k -- DOESN'T QUITE WORK
 "nnoremap <leader>j ^ 
 "nnoremap <leader>k $ 
@@ -307,6 +311,8 @@ nnoremap <leader>l :ls<CR>
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
 
+" highlight current word
+nnoremap <leader>hl *N
 " clear search results
 nnoremap <leader>cls :let @/=""<CR>
 " delete lhs of an assignment statement (including equals sign)
