@@ -11,7 +11,7 @@ set nocompatible
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Install vundle for first time if necessary
 if !isdirectory(expand("~/.vim/bundle/vundle"))
-	!mkdir -p ~/.vim/bundle
+	call mkdir(expand("~/.vim/bundle"), "p")
 	!git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 	let s:bootstrap=1 "indicates vundle needed to be installed
 endif
@@ -42,6 +42,8 @@ Bundle 'tpope/vim-repeat'
 " show marks
 "Bundle 'ShowMarks'
 Bundle 'kshenoy/vim-signature'
+" switch between header and source
+Bundle 'vim-scripts/a.vim'
 " search tab completion
 Bundle 'SearchComplete'
 " enhanced statusline -- TODO: figure out how this works
@@ -79,7 +81,7 @@ let g:Powerline_colorscheme='desert'
 " General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Command/search history
-set history=200
+set history=500
 
 """ File types
 filetype on "detect file type
@@ -92,9 +94,16 @@ set autoread
 set updatetime=10000
 " Check for changes on disk to file in buffer after user inactivity
 autocmd CursorHold * checktime
+" Automatically reload vimrc when modified
+augroup vimrc
+	au!
+	au BufWritePost .vimrc,vimrc source $MYVIMRC
+augroup END
 
 " Abbreviate file messages
 set shortmess=a
+
+set lazyredraw
 
 " Make , the map leader
 let mapleader = ","
@@ -127,9 +136,13 @@ set scrolloff=4
 " Enhanced tab autocompletion
 set wildmenu
 set wildmode=list:longest,full
-set wildignore+=*.o,*.class,*.pyc			"compiled files
-set wildignore+=*.zip,*.tar*,*.rar,*.jar	"compressed files
-set wildignore+=*~,*.swp					"temps and backups
+set wildignore+=.git							"version control directories
+set wildignore+=*.o,*.class,*.pyc,*.dll,*.exe	"compiled files
+set wildignore+=*.zip,*.tar*,*.rar,*.jar		"compressed files
+set wildignore+=*~,*.swp						"temps and backups
+set wildignore+=*.aux,*.synctex.gz				"latex files
+set wildignore+=*.bmp,*.gif,*.jpeg,*.jpg,*.png	"image files
+set wildignore+=*.pdf
 
 """ Better search
 set incsearch "Incremental Search - search as you type
@@ -184,8 +197,10 @@ set nobackup
 
 """ Save undo history in file
 if has("persistent_undo")
-	" create ~/.vim/undo if it doesn't already exist and ignore all errors/output
-	silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
+	" create ~/.vim/undo if it doesn't already exist
+	if !isdirectory(expand("~/.vim/undo"))
+		call mkdir(expand("~/.vim/undo"), "p")
+	endif
 	set undodir=~/.vim/undo
 	set undofile
 	set undolevels=100
@@ -222,7 +237,7 @@ let ruby_space_errors = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Buffer views
+" Buffer views and vim sessions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " unix/slash added for better windows-unix compatibility
 set viewoptions=folds,options,cursor,unix,slash
@@ -230,6 +245,11 @@ set viewoptions=folds,options,cursor,unix,slash
 " save and load views (states) for buffers automatically
 autocmd BufWinLeave * mkview
 autocmd BufWinEnter * silent loadview
+
+" update session on quitting vim if session has already been created
+autocmd VimLeave * :call UpdateSession()
+map <leader>ms :call MakeSession()<CR>
+map <leader>ls :call LoadSession()<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -274,9 +294,11 @@ inoremap ;; _
 " Make insert mode pasting easier
 inoremap <C-r><C-r> <C-r>"
 
-" Remap ^ and $ to ctrl-h and ctrl-l -- this works
+" Remap ^ and $ to ctrl-h and ctrl-l
 nnoremap <C-h> ^
 nnoremap <C-l> $
+vnoremap <C-h> ^
+vnoremap <C-l> $
 " Remap ^ and $ to ,j and ,k -- DOESN'T QUITE WORK
 "nnoremap <leader>j ^ 
 "nnoremap <leader>k $ 
@@ -289,6 +311,13 @@ nnoremap <leader>l :ls<CR>
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
 
+" highlight current word
+nnoremap <leader>hl *N
+" clear search results
+nnoremap <leader>cls :let @/=""<CR>
+" delete lhs of an assignment statement (including equals sign)
+nnoremap <leader>da df=x
+
 " edit and source vimrc (this file)
 nnoremap <leader>ev :e $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
@@ -300,6 +329,62 @@ nnoremap <leader>U gUiw
 " CtrlP
 nnoremap <leader>cpb :CtrlPBuffer<CR>
 nnoremap <leader>cpm :CtrlPMRU<CR>
+
+" vim-signature
+nnoremap <leader>mn ]'
+nnoremap <leader>mp ['
+" TODO: these don't work
+"nnoremap <leader>mna ']
+"nnoremap <leader>mpa '[
+
+" A.vim
+nnoremap <leader>ga gf:A<CR>
+nnoremap <leader>gas gf:AS<CR>
+nnoremap <leader>gav gf:AV<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Creates a session
+function! MakeSession()
+	let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
+	if (filewritable(b:sessiondir) != 2)
+		"call mkdir(expand(b:sessiondir), "p")
+		exe "silent !mkdir -p " . b:sessiondir
+		redraw!
+	endif
+	let b:sessionfile = b:sessiondir . "/session.vim"
+	exe "mksession! " . b:sessionfile
+endfunction
+
+" Updates a session, BUT ONLY IF IT ALREADY EXISTS
+function! UpdateSession()
+	if argc() == 0
+		let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
+		let b:sessionfile = b:sessiondir . "/session.vim"
+		if (filewritable(b:sessionfile))
+			exe "mksession! " . b:sessionfile
+			"echo "updating session"
+		endif
+	endif
+endfunction
+
+" Loads a session if it exists
+function! LoadSession()
+	"if argc() == 0
+		let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
+		let b:sessionfile = b:sessiondir . "/session.vim"
+		if (filereadable(b:sessionfile))
+			exe "source " . b:sessionfile
+		else
+			"echo "No session loaded."
+		endif
+	"else
+		"let b:sessionfile = ""
+		"let b:sessiondir = ""
+	"endif
+endfunction
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

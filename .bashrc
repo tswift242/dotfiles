@@ -6,6 +6,9 @@ shopt -s histappend
 # When changing directory small typos can be ignored by bash
 shopt -s cdspell
 
+# Enables coloring in prompt
+force_color_prompt=yes
+
 [[ -f ~/.bash/aliases/general ]] && source ~/.bash/aliases/general
 [[ -f ~/.bash/aliases/git ]] && source ~/.bash/aliases/git
 [[ -f ~/.bash/aliases/maven ]] && source ~/.bash/aliases/maven
