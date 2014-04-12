@@ -4,14 +4,14 @@
 [alias]
 	st = status
 	s = status -sb ;short status 
-	cm = commit -m
-	cma = commit -am ;commit all 
+	c = commit -m
+	ca = commit -am ;commit all 
 	ps = push
 	pl = pull
-	br = branch
-	bra = branch -a
+	b = branch
+	ba = branch -a
 	co = checkout
-	df = diff
+	d = diff
 	r = remote
 	ra = remote add
 	rr = remote rm
@@ -20,7 +20,7 @@
 	l = log --graph
 	lp = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	wc = whatchanged --graph
-	mer = merge
+	m = merge
 [core]
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
