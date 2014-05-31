@@ -1,10 +1,13 @@
 ### History Options ###
 # Increase history from default of 500
-export HISTSIZE=1000
+export HISTSIZE=5000
 # Don't put duplicate lines in the history.
-export HISTCONTROL=ignoredups
+export HISTCONTROL=ignoredups:erasedups
 # Ignore these commands when recording history
 export HISTIGNORE="[ \t]*:&:[fb]g:exit:ls:ll:cd:pwd:.{2,}"
+
+# save and reload history after each command
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 ### Miscellaneous ###
 # Language and locale
@@ -57,14 +60,26 @@ IPurple="\[\e[0;95m\]"
 ICyan="\[\e[0;96m\]"
 IWhite="\[\e[0;97m\]"
 
-Time12h="\T"
+# escapes
+Time12hWithSecs="\T"
+Time24hWithSecs="\t"
+Time12hAMPM="\@"
+User="\u"
+Host="\h"
 PathShort="\w"
+DollarPrompt="\$"
+
+# current datetime string in use
+Datetime="\D{%D %T}"
+
+
 
 # Customize prompt
 # Prompt is currently as follows: 
-# [username@hostname: dir] (HH:MM AM/PM)\n$
+# mm:dd:yy HH:MM:SS [username@hostname: dir]\n$
+
 #if [ "$color_prompt" = yes ]; then
-	export PS1="$ICyan\@$Reset$Red [$Reset$Green\u@\h$Reset$White: $Reset$Yellow\w$Reset$Red]\n$Reset$Green\$$Reset$White $Reset"
+	export PS1="$ICyan$Datetime$Reset$Red [$Reset$Green$User@$Host$Reset$White: $Reset$Yellow$PathShort$Reset$Red]\n$Reset$Green$DollarPrompt$Reset$White $Reset"
 #else
 	#export PS1="\[\e[00;37m\][\u@\h: \w]\n\$\[\e[0m\] "
 #fi

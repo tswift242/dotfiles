@@ -87,6 +87,8 @@ set history=500
 filetype on "detect file type
 filetype plugin on "load filetype plugins
 filetype indent on "load file-specific indent files
+" use shell syntax coloring for all files in ~/.bash -- TODO: not working
+autocmd BufRead,BufNewFile ~/dotfiles/.bash/*,~/.bash/* set syntax=sh
 
 " Update file when modified elsewhere on leaving buffer
 set autoread
@@ -278,7 +280,7 @@ set statusline+=\ %P\     "percent through file
 " Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn on spell checking
-set spell
+set nospell
 
 " Specify file to store words deemed correctly spelled -- NEED V7.4??
 "spellfile+=~/.vim/spell/en.utf-8.add
