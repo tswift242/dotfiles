@@ -1,7 +1,7 @@
 alias mcl="mvn clean"
 # package
-alias mp="mvn package"
-alias mcp="mvn clean package"
+alias mpack="mvn package"
+alias mcpack="mvn clean package"
 alias mpskip="mvn package -DskipTests"
 alias mcpskip="mvn clean package -DskipTests"
 # install
