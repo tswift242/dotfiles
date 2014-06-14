@@ -35,13 +35,15 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/syntastic'
 " easy commenting
 Bundle 'scrooloose/nerdcommenter'
+" show marks
+"Bundle 'ShowMarks'
+Bundle 'kshenoy/vim-signature'
+" multiple selections
+Bundle 'terryma/vim-multiple-cursors'
 " easily changing matching pairs surrounding text
 Bundle 'tpope/vim-surround'
 " use . to repeat last plugin command -- for surround
 Bundle 'tpope/vim-repeat'
-" show marks
-"Bundle 'ShowMarks'
-Bundle 'kshenoy/vim-signature'
 " switch between header and source
 Bundle 'vim-scripts/a.vim'
 " search tab completion
@@ -63,14 +65,21 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP
 let g:ctrlp_by_filename = 1
-let g:ctrlp_root_markers = ['pom.xml'] "find maven projects
+"let g:ctrlp_root_markers = ['pom.xml', 'build.xml', 'Makefile']
 let g:ctrlp_custom_ignore = {
 	\ 'dir': '\v[\/](\.settings|target|\.git)$',
+	\ 'file': '\v\.(exe|dll|class|o|pyc|zip|jar)$',
 	\ }
 
 " Syntastic
 "let g:syntastic_check_on_open=1 "check for errors when opening file
 let g:syntastic_mode_map = { 'mode': 'passive'} "only find errors when asked
+
+" Multiple Cursors
+"let g:multi_cursor_use_default_mapping=0
+"let g:multi_cursor_next_key='<C-n>'
+"let g:multi_cursor_prev_key='<C-p>'
+"let g:multi_cursor_quit_key='ii'
 
 " Powerline
 let g:Powerline_symbols = 'fancy'
