@@ -1,3 +1,13 @@
 alias mcl="mvn clean"
+# package
+alias mp="mvn package"
+alias mcp="mvn clean package"
+alias mpskip="mvn package -DskipTests"
+alias mcpskip="mvn clean package -DskipTests"
+# install
+alias mi="mvn install"
 alias mci="mvn clean install"
+alias miskip="mvn install -DskipTests"
 alias mciskip="mvn clean install -DskipTests"
+
+alias mdep="mvn dependency:tree"
