@@ -1,0 +1,10 @@
+# Customize prompt
+# Left prompt is currently as follows: 
+# mm:dd:yy HH:MM:SS [username@hostname: dir]\n$
+
+_newline=$'\n'
+
+PROMPT="%{$fg_bold[cyan]%}%W %*%{$fg_no_bold[red]%} [%{$fg_no_bold[green]%}%n@%m%{$reset_color%}: %{$fg_no_bold[yellow]%}%3~%{$fg_no_bold[red]%}]${_newline}%{$fg_no_bold[green]%}%# %{$reset_color%}"
+
+#TODO: this commented out b/c it aligns with 2nd left prompt line, not first
+#RPROMPT="[%{$fg_no_bold[cyan]%}%?%{$reset_color%}]"

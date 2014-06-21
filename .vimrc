@@ -46,6 +46,8 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 " switch between header and source
 Bundle 'vim-scripts/a.vim'
+" xml tag completion -- TODO: don't understand how this works
+"Bundle 'sukima/xmledit'
 " search tab completion
 Bundle 'SearchComplete'
 " enhanced statusline -- TODO: figure out how this works
@@ -80,6 +82,10 @@ let g:syntastic_mode_map = { 'mode': 'passive'} "only find errors when asked
 "let g:multi_cursor_next_key='<C-n>'
 "let g:multi_cursor_prev_key='<C-p>'
 "let g:multi_cursor_quit_key='ii'
+
+" xml edit
+"disable
+let loaded_xmledit = 1
 
 " Powerline
 let g:Powerline_symbols = 'fancy'

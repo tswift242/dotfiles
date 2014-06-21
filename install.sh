@@ -7,7 +7,7 @@
 dir=~/dotfiles # dotfiles directory
 olddir=~/dotfiles_old # backup directory for old dotfiles
 # list of files/folders to symlink in homedir
-files=".bash .bash_profile .bashrc .gitconfig .gitignore_global .screenrc .vim .vimrc" 
+files=".shell .bash_profile .bashrc .gitconfig .gitignore_global .screenrc .vim .vimrc .zshrc" 
 
 
 # create $olddir
@@ -40,10 +40,17 @@ done
 echo
 
 
-# source new bash and vim config files if they exist
-bashrc=~/.bashrc
-if [ -f $bashrc ]; then
-	echo -n "Sourcing $bashrc ... "
-	source $bashrc
-	echo "done"
-fi
+# source new bash/zsh config file if it exists
+#if [ "$SHELL" == "/bin/zsh" ]; then
+	#echo "Running zsh"
+	#shellrc=~/.zshrc
+#else
+	#echo "Running bash"
+	#shellrc=~/.bashrc
+#fi
+
+#if [ -f $shellrc ]; then
+	#echo "Sourcing $shellrc ... "
+	#source $shellrc
+	#echo "done"
+#fi

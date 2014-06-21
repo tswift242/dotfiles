@@ -10,7 +10,7 @@ alias ....="cd ../../.."
 alias diff="colordiff"
 
 # Colorize grep
-alias grep="grep --color"
+alias grep="grep --color=auto"
 alias egrep="egrep --color=auto"
 alias fgrep="fgrep --color=auto"
 

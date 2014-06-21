@@ -1,0 +1,10 @@
+### History Options ###
+# add commands to history as they are executed, keep history consistent among all active zsh's, do not allow duplicates to be recorded, and format history file with timestamp
+setopt appendhistory incappendhistory sharehistory histignorealldups
+unsetopt extendedhistory
+
+### Directory Options ###
+# automatically push old dir onto dir stack on cd; don't push dups onto dir stack
+setopt autopushd pushdignoredups
+
+setopt extendedglob

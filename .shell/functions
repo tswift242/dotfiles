@@ -2,6 +2,7 @@ mkcd() {
 	mkdir "$1" && cd "$1";
 }
 
+# one function to extract any archive file
 extract() {
 	if [ $# -ne 1 ]; then
 		echo "Error: No file specified."
@@ -25,6 +26,11 @@ extract() {
 	else
 		echo "'$1' is not a valid file"
 	fi
+}
+
+# get git branch for use in prompt
+parse_git_branch(){
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1] /';
 }
 
 # Translate a Word (for fun)  - USAGE: translate house spanish  

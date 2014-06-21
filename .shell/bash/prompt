@@ -1,31 +1,3 @@
-### History Options ###
-# Increase history from default of 500
-export HISTSIZE=5000
-# Don't put duplicate lines in the history.
-export HISTCONTROL=ignoredups:erasedups
-# Ignore these commands when recording history
-export HISTIGNORE="[ \t]*:&:[fb]g:exit:ls:ll:cd:pwd:.{2,}"
-
-# save and reload history after each command
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-
-### Miscellaneous ###
-# Language and locale
-export LANG="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
-
-# Add color
-export CLICOLOR=1
-
-export EDITOR="vim"
-
-# Have terminal use 256 colors if available
-if [ -e /usr/share/terminfo/x/xterm-256color ]; then
-        export TERM="xterm-256color"
-else
-        export TERM="xterm-color"
-fi
-
 ## Define color variables ##
 # Reset
 Reset="\[\e[0m\]"
