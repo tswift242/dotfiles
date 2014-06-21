@@ -6,11 +6,12 @@ bindkey -e
 #bindkey '\e[3~' delete-char
 #bindkey '^R' history-incremental-search-backward
 
-# enhanced auto completion
-autoload -U compinit && compinit
-
 # load prompt colors
 autoload -U colors && colors
+
+# enhanced auto completion
+autoload -U compinit && compinit
+zmodload -i zsh/complist
 
 # general config
 [[ -f ~/.shell/aliases/general ]] && source ~/.shell/aliases/general
@@ -21,8 +22,8 @@ autoload -U colors && colors
 [[ -f ~/.shell/paths ]] && source ~/.shell/paths
 
 # zsh specific config
-[[ -f ~/.shell/zsh/options ]] && source ~/.shell/zsh/options
 [[ -f ~/.shell/zsh/variables ]] && source ~/.shell/zsh/variables
+[[ -f ~/.shell/zsh/options ]] && source ~/.shell/zsh/options
 [[ -f ~/.shell/zsh/prompt ]] && source ~/.shell/zsh/prompt
 
 # Local config

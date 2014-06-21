@@ -1,10 +1,38 @@
 ### History Options ###
-# add commands to history as they are executed, keep history consistent among all active zsh's, do not allow duplicates to be recorded, and format history file with timestamp
-setopt appendhistory incappendhistory sharehistory histignorealldups
-unsetopt extendedhistory
+setopt append_history
+# add commands to history as they are executed
+setopt inc_append_history
+# keep history consistent among all active zsh's
+setopt share_history
+# do not allow duplicates to be recorded
+setopt hist_ignore_all_dups
+
+# disable timestamp formatting in history file
+unsetopt extended_history
 
 ### Directory Options ###
-# automatically push old dir onto dir stack on cd; don't push dups onto dir stack
-setopt autopushd pushdignoredups
+# automatically push old dir onto dir stack on cd
+setopt auto_pushd
+# don't push dups onto dir stack
+setopt pushd_ignore_dups
 
-setopt extendedglob
+setopt extended_glob
+
+### Completion Options ###
+setopt auto_menu
+# allow completion from middle of word
+setopt complete_in_word
+# after completing in middle of word, move cursor to end of word
+setopt always_to_end
+
+# always display list of options
+unsetopt list_ambiguous
+# do not autoselect first completion item
+unsetopt menu_complete
+
+# enable coloring of completion items using same colors as ls
+zstyle ':completion:*' list-colors ''
+# enable menu selection for 2+ items
+zstyle ':completion:*' menu select=2
+# ignore case
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
