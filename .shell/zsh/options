@@ -16,7 +16,10 @@ setopt auto_pushd
 # don't push dups onto dir stack
 setopt pushd_ignore_dups
 
+### Miscellaneous Options ###
 setopt extended_glob
+# allows variable substitution in prompt
+setopt prompt_subst
 
 ### Completion Options ###
 setopt auto_menu

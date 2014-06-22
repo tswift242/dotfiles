@@ -13,6 +13,9 @@ autoload -U colors && colors
 autoload -U compinit && compinit
 zmodload -i zsh/complist
 
+# version control info for prompt
+autoload -Uz vcs_info
+
 # general config
 [[ -f ~/.shell/aliases/general ]] && source ~/.shell/aliases/general
 [[ -f ~/.shell/aliases/git ]] && source ~/.shell/aliases/git
