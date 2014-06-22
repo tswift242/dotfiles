@@ -1,6 +1,14 @@
+### Color variables ###
+# create helper variables for colors loaded from colors module for improved readability
+for COLOR in RED GREEN YELLOW BLUE MAGENTA CYAN BLACK WHITE; do
+    eval $COLOR='%{$fg_no_bold[${(L)COLOR}]%}'
+    eval BOLD_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
+done
+eval RESET='%{$reset_color%}'
+
 ### VCS info ###
 zstyle ':vcs_info:*' enable git p4
-zstyle ':vcs_info:*' formats "%{$fg_no_bold[red]%}(%{$fg_bold[yellow]%}%r %{$reset_color%}- %{$fg_bold[green]%}%b%{$fg_no_bold[red]%})"
+zstyle ':vcs_info:*' formats "${RED}(${BOLD_YELLOW}%r ${RESET}- ${BOLD_GREEN}%b${RED})"
 precmd() {
 	vcs_info
 }
@@ -15,8 +23,8 @@ _newline=$'\n'
 _lineup=$'\e[1A'
 _linedown=$'\e[1B'
 
-PROMPT='%{$fg_bold[cyan]%}%W %*%{$fg_no_bold[red]%} [%{$fg_no_bold[green]%}%n@%m%{$reset_color%}: %{$fg_no_bold[yellow]%}%3~%{$fg_no_bold[red]%}] ${_newline}%{$reset_color%}[%{$fg_no_bold[cyan]%}%?%{$reset_color%}] %{$fg_no_bold[green]%}%# %{$reset_color%}'
+PROMPT='${BOLD_CYAN}%W %*${RED} [${GREEN}%n@%m$RESET: ${YELLOW}%3~${RED}] ${_newline}${RESET}[${CYAN}%?${RESET}] ${GREEN}%# ${RESET}'
 
 # Right prompt is currently as follows: (repo_root_dir - branch)
 # align RPROMPT with first line of PROMPT
-RPROMPT='%{${_lineup}%}${vcs_info_msg_0_}%{${_linedown}%} %{$reset_color%}'
+RPROMPT='%{${_lineup}%}${vcs_info_msg_0_}%{${_linedown}%} ${RESET}'
