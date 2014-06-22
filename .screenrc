@@ -19,8 +19,7 @@ term screen-256color
 # Lines of history to be stored in scrollback buffer
 defscrollback 1000  #default: 100
 # Default shell that's started in each window
-#shell -$SHELL
-shell bash
+shell -$SHELL
 # Set file encoding
 defutf8 on
 
@@ -28,7 +27,7 @@ defutf8 on
 # Initial Windows
 # ==========================================================================
 # open screen windows with these titles and execute following commands (if any)
-screen -t bash0 0
+screen -t shell0 0
 screen -t vim 1
 # make window 0 current window
 select 0
