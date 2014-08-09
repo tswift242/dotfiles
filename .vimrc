@@ -217,6 +217,8 @@ set t_Co=256 "enable 256 colors
 colorscheme desert
 set background=dark
 " highlight Java tags in red through vim-easytags
+highlight javaClassTag ctermfg=red
+highlight javaInterfaceTag ctermfg=red
 highlight javaMethodTag ctermfg=red
 
 set encoding=utf8
