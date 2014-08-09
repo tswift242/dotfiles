@@ -1,69 +1,75 @@
-" use vim settings instead of vi settings
-set nocompatible
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" :BundleList		- list bundles
-" :BundleInstall	- install/update bundles
-" :BundleClean		- remove bundles
-" :BundleSearch		- search for bundle
+" :PluginList		- list bundles
+" :PluginInstall	- install/update bundles
+" :PluginClean		- remove bundles
+" :PluginSearch		- search for bundle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set nocompatible " use vim settings instead of vi settings (required)
+filetype off " required
+
 " Install vundle for first time if necessary
-if !isdirectory(expand("~/.vim/bundle/vundle"))
+if !isdirectory(expand("~/.vim/bundle/Vundle.vim"))
 	call mkdir(expand("~/.vim/bundle"), "p")
-	!git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+	!git clone git://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	let s:bootstrap=1 "indicates vundle needed to be installed
 endif
 
-
-filetype off "required
-
 " setup Vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " Let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
-""""" My Bundles """"""
+""""" My Plugins """"""
 " easy forward motion navigation
-Bundle 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-easymotion'
 " file, buffer, MRU finder
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 " syntax error highlighter
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 " easy commenting
-Bundle 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdcommenter'
 " show marks
-"Bundle 'ShowMarks'
-Bundle 'kshenoy/vim-signature'
+"Plugin 'ShowMarks'
+Plugin 'kshenoy/vim-signature'
 " multiple selections
-Bundle 'terryma/vim-multiple-cursors'
+Plugin 'terryma/vim-multiple-cursors'
 " easily changing matching pairs surrounding text
-Bundle 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 " use . to repeat last plugin command -- for surround
-Bundle 'tpope/vim-repeat'
+Plugin 'tpope/vim-repeat'
 " switch between header and source
-Bundle 'vim-scripts/a.vim'
+Plugin 'vim-scripts/a.vim'
 " xml tag completion -- TODO: don't understand how this works
-"Bundle 'sukima/xmledit'
+"Plugin 'sukima/xmledit'
 " search tab completion
-Bundle 'SearchComplete'
+Plugin 'SearchComplete'
 " enhanced statusline -- TODO: figure out how this works
-Bundle 'Lokaltog/powerline'
+"Plugin 'bling/vim-airline'
 " TODO: check out vim-fugitive
 
+" Local config (may have plugins)
+if filereadable(expand("~/.vimrc.local"))
+	source ~/.vimrc.local
+endif
+
+" All plugins must be added before the following line
+call vundle#end() " required
+filetype plugin indent on " required
 
 " Install bundles with vundle if necessary
 if exists("s:bootstrap") && s:bootstrap
 	unlet s:bootstrap
-	BundleInstall
+	PluginInstall
 endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Bundle Options
+" Plugin Options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP
 let g:ctrlp_by_filename = 1
@@ -87,9 +93,8 @@ let g:syntastic_mode_map = { 'mode': 'passive'} "only find errors when asked
 "disable
 let loaded_xmledit = 1
 
-" Powerline
-let g:Powerline_symbols = 'fancy'
-let g:Powerline_colorscheme='desert'
+" Airline
+"let g:airline#extensions#tabline#enabled = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -276,9 +281,10 @@ map <leader>ls :call LoadSession()<CR>
 set laststatus=2
 
 " Format the status line
+"TODO: put in mode at begginning
 set statusline=%t       "filename
-set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, "file encoding
-set statusline+=%{&ff}] "file format
+"set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=\ [%{&ff}] "file format
 set statusline+=%y      "filetype
 set statusline+=%h      "help file flag: [help]
 set statusline+=%m      "modified flag: [+]
@@ -402,12 +408,3 @@ function! LoadSession()
 		"let b:sessiondir = ""
 	"endif
 endfunction
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Other
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Local config
-if filereadable(expand("~/.vimrc.local"))
-	source ~/.vimrc.local
-endif
