@@ -29,6 +29,10 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'Lokaltog/vim-easymotion'
 " file, buffer, MRU finder
 Plugin 'kien/ctrlp.vim'
+" automatic source code tagging for easy code browsing
+Plugin 'xolox/vim-easytags'
+Plugin 'xolox/vim-misc' " support plugin
+Plugin 'xolox/vim-shell' " needed for async tagging on Windows
 " syntax error highlighter
 Plugin 'scrooloose/syntastic'
 " easy commenting
@@ -95,6 +99,11 @@ let loaded_xmledit = 1
 
 " Airline
 "let g:airline#extensions#tabline#enabled = 1
+
+" Easytags
+let g:easytags_async = 1
+let g:easytags_resolve_links = 1
+"let g:easytags_always_enabled = 1 " too slow
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -201,12 +210,14 @@ autocmd VimResized * :wincmd =
 " Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
-syntax on
+syntax enable
 
 """ Color scheme and theme
 set t_Co=256 "enable 256 colors
 colorscheme desert
 set background=dark
+" highlight Java tags in red through vim-easytags
+highlight javaMethodTag ctermfg=red
 
 set encoding=utf8
 
@@ -270,8 +281,8 @@ autocmd BufWinEnter * silent loadview
 
 " update session on quitting vim if session has already been created
 autocmd VimLeave * :call UpdateSession()
-map <leader>ms :call MakeSession()<CR>
-map <leader>ls :call LoadSession()<CR>
+nnoremap <leader>ms :call MakeSession()<CR>
+nnoremap <leader>ls :call LoadSession()<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -352,6 +363,12 @@ nnoremap <leader>U gUiw
 " CtrlP
 nnoremap <leader>cpb :CtrlPBuffer<CR>
 nnoremap <leader>cpm :CtrlPMRU<CR>
+
+" Easytags
+"go to declartion of tag under cursor
+nnoremap <leader>gd <C-]>
+"update tags recurisvely from current directory
+nnoremap <leader>ut :UpdateTags -R .<CR>
 
 " vim-signature
 nnoremap <leader>mn ]'
