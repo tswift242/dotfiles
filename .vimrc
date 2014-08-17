@@ -278,8 +278,8 @@ let ruby_space_errors = 1
 set viewoptions=folds,options,cursor,unix,slash
 
 " save and load views (states) for buffers automatically
-autocmd BufWinLeave * mkview
-autocmd BufWinEnter * silent loadview
+autocmd BufWinLeave * silent! mkview
+autocmd BufWinEnter * silent! loadview
 
 " update session on quitting vim if session has already been created
 autocmd VimLeave * :call UpdateSession()
