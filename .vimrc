@@ -79,7 +79,7 @@ endif
 let g:ctrlp_by_filename = 1
 "let g:ctrlp_root_markers = ['pom.xml', 'build.xml', 'Makefile']
 let g:ctrlp_custom_ignore = {
-	\ 'dir': '\v[\/](\.settings|target|\.git)$',
+	\ 'dir': '\v[\/](\.settings|\.idea|target|\.git)$',
 	\ 'file': '\v\.(exe|dll|so|class|o|pyc|zip|tar|rar|jar)$',
 	\ }
 
@@ -176,6 +176,7 @@ set scrolloff=4
 set wildmenu
 set wildmode=list:longest,full
 set wildignore+=.git								"version control directories
+set wildignore+=.idea,.settings,target				"IDE/build directories
 set wildignore+=*.o,*.class,*.pyc,*.dll,*.so,*.exe	"compiled files
 set wildignore+=*.zip,*.tar*,*.rar,*.jar			"compressed files
 set wildignore+=*~,*.swp,*.un*						"temps and backups

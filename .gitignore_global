@@ -6,7 +6,7 @@
 *.so
 *.exe
 
-# Packages
+# Archives
 *.zip
 *.tar*
 *.rar
@@ -20,3 +20,11 @@
 
 # Logs
 *.log
+
+# Other
+*.iml
+
+# Directories for IDE's / generated files
+.idea/
+.settings/
+target/
