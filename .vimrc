@@ -80,7 +80,7 @@ let g:ctrlp_by_filename = 1
 "let g:ctrlp_root_markers = ['pom.xml', 'build.xml', 'Makefile']
 let g:ctrlp_custom_ignore = {
 	\ 'dir': '\v[\/](\.settings|target|\.git)$',
-	\ 'file': '\v\.(exe|dll|class|o|pyc|zip|jar)$',
+	\ 'file': '\v\.(exe|dll|so|class|o|pyc|zip|tar|rar|jar)$',
 	\ }
 
 " Syntastic
@@ -93,10 +93,6 @@ let g:syntastic_mode_map = { 'mode': 'passive'} "only find errors when asked
 "let g:multi_cursor_prev_key='<C-p>'
 "let g:multi_cursor_quit_key='ii'
 
-" xml edit
-"disable
-let loaded_xmledit = 1
-
 " Airline
 "let g:airline#extensions#tabline#enabled = 1
 
@@ -104,6 +100,18 @@ let loaded_xmledit = 1
 let g:easytags_async = 1
 let g:easytags_resolve_links = 1
 "let g:easytags_always_enabled = 1 " too slow
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -167,12 +175,12 @@ set scrolloff=4
 " Enhanced tab autocompletion
 set wildmenu
 set wildmode=list:longest,full
-set wildignore+=.git							"version control directories
-set wildignore+=*.o,*.class,*.pyc,*.dll,*.exe	"compiled files
-set wildignore+=*.zip,*.tar*,*.rar,*.jar		"compressed files
-set wildignore+=*~,*.swp						"temps and backups
-set wildignore+=*.aux,*.synctex.gz				"latex files
-set wildignore+=*.bmp,*.gif,*.jpeg,*.jpg,*.png	"image files
+set wildignore+=.git								"version control directories
+set wildignore+=*.o,*.class,*.pyc,*.dll,*.so,*.exe	"compiled files
+set wildignore+=*.zip,*.tar*,*.rar,*.jar			"compressed files
+set wildignore+=*~,*.swp,*.un*						"temps and backups
+set wildignore+=*.aux,*.synctex.gz					"latex files
+set wildignore+=*.bmp,*.gif,*.jpeg,*.jpg,*.png		"image files
 set wildignore+=*.pdf
 
 """ Better search
@@ -346,6 +354,9 @@ nnoremap <leader>w <C-w><C-w>
 nnoremap <leader>l :ls<CR>
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
+
+" find usages (search) for word under cursor recursively from current directory
+nnoremap <leader>fu :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " highlight current word
 nnoremap <leader>hl *N
