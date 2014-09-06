@@ -1,5 +1,5 @@
 # Better file listing
-alias ls="ls -hA --color=auto"                 # classify files in colour
+alias ls="ls -hA --color=always"                 # classify files in colour
 alias ll="ls -l"                              # long list
 
 # Easier directory navigation
@@ -10,9 +10,13 @@ alias ....="cd ../../.."
 alias diff="colordiff"
 
 # Colorize grep
-alias grep="grep --color=auto"
-alias egrep="egrep --color=auto"
-alias fgrep="fgrep --color=auto"
+alias grep="grep --color=always"
+alias egrep="egrep --color=always"
+alias fgrep="fgrep --color=always"
+alias ag="ag --color"
+
+# Have less preserve color when another program pipes to it
+alias less="less -r"
 
 # Fast making
 alias make="make -j"
