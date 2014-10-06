@@ -1,0 +1,8 @@
+alias tns="tmux new-session -s"
+alias tls="tmux list-sessions"
+alias ta="tmux attach -t"
+
+alias tsv="tmux split-window -h"
+alias tsh="tmux split-window"
+
+alias tswp="tmux swap-pane"

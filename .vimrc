@@ -41,7 +41,7 @@ Plugin 'scrooloose/nerdcommenter'
 "Plugin 'ShowMarks'
 Plugin 'kshenoy/vim-signature'
 " multiple selections
-Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'terryma/vim-multiple-cursors'
 " easily changing matching pairs surrounding text
 Plugin 'tpope/vim-surround'
 " use . to repeat last plugin command -- for surround
