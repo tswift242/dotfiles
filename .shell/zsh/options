@@ -20,6 +20,8 @@ setopt pushd_ignore_dups
 setopt extended_glob
 # allows variable substitution in prompt
 setopt prompt_subst
+# no beeps
+setopt NO_BEEP
 
 ### Completion Options ###
 setopt auto_menu
