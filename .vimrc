@@ -1,5 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vundle
+" Plugins (managed by Vundle)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " :PluginList		- list plugins
 " :PluginInstall	- install plugins
@@ -36,6 +36,8 @@ Plugin 'xolox/vim-misc' " support plugin
 Plugin 'xolox/vim-shell' " needed for async tagging on Windows
 " syntax error checker/highlighter
 Plugin 'scrooloose/syntastic'
+" enhanced statusline -- TODO: figure out how this works
+"Plugin 'bling/vim-airline'
 " easy commenting
 Plugin 'scrooloose/nerdcommenter'
 " show marks
@@ -53,8 +55,6 @@ Plugin 'vim-scripts/a.vim'
 "Plugin 'sukima/xmledit'
 " search tab completion
 Plugin 'SearchComplete'
-" enhanced statusline -- TODO: figure out how this works
-"Plugin 'bling/vim-airline'
 " TODO: check out vim-fugitive
 
 " Local config (may have plugins)
@@ -76,7 +76,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CtrlP
+""" CtrlP """
 let g:ctrlp_by_filename = 1
 "let g:ctrlp_root_markers = ['pom.xml', 'build.xml', 'Makefile']
 let g:ctrlp_custom_ignore = {
@@ -84,25 +84,6 @@ let g:ctrlp_custom_ignore = {
 	\ 'file': '\v\.(exe|dll|so|class|o|pyc|zip|tar|rar|jar)$',
 	\ }
 
-" Syntastic
-"let g:syntastic_check_on_open=1 "check for errors when opening file
-let g:syntastic_mode_map = { 'mode': 'passive'} "only find errors when asked
-
-" Multiple Cursors
-"let g:multi_cursor_use_default_mapping=0
-"let g:multi_cursor_next_key='<C-n>'
-"let g:multi_cursor_prev_key='<C-p>'
-"let g:multi_cursor_quit_key='ii'
-
-" Airline
-"let g:airline#extensions#tabline#enabled = 1
-
-" Easytags
-let g:easytags_async = 1
-let g:easytags_resolve_links = 1
-"let g:easytags_always_enabled = 1 " too slow
-
-" The Silver Searcher
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
@@ -113,6 +94,28 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
+
+
+""" Easytags """
+let g:easytags_async = 1
+let g:easytags_resolve_links = 1
+"let g:easytags_always_enabled = 1 " too slow
+
+
+""" Syntastic """
+"let g:syntastic_check_on_open=1 "check for errors when opening file
+let g:syntastic_mode_map = { 'mode': 'passive'} "only find errors when asked
+
+
+""" Airline """
+"let g:airline#extensions#tabline#enabled = 1
+
+
+""" Multiple Cursors """
+"let g:multi_cursor_use_default_mapping=0
+"let g:multi_cursor_next_key='<C-n>'
+"let g:multi_cursor_prev_key='<C-p>'
+"let g:multi_cursor_quit_key='ii'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
