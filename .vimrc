@@ -1,10 +1,11 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" :PluginList		- list bundles
-" :PluginInstall	- install/update bundles
-" :PluginClean		- remove bundles
-" :PluginSearch		- search for bundle
+" :PluginList		- list plugins
+" :PluginInstall	- install plugins
+" :PluginUpdate		- update plugins
+" :PluginClean		- remove plugins
+" :PluginSearch		- search for plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set nocompatible " use vim settings instead of vi settings (required)
@@ -33,7 +34,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc' " support plugin
 Plugin 'xolox/vim-shell' " needed for async tagging on Windows
-" syntax error highlighter
+" syntax error checker/highlighter
 Plugin 'scrooloose/syntastic'
 " easy commenting
 Plugin 'scrooloose/nerdcommenter'
@@ -124,8 +125,6 @@ set history=500
 filetype on "detect file type
 filetype plugin on "load filetype plugins
 filetype indent on "load file-specific indent files
-" use shell syntax coloring for all files in ~/.bash -- TODO: not working
-autocmd BufRead,BufNewFile ~/dotfiles/.bash/*,~/.bash/* set syntax=sh
 
 " Update file when modified elsewhere on leaving buffer
 set autoread
@@ -154,7 +153,7 @@ let mapleader = ","
 " Show line numbers
 set number
 
-" Show current line number and column
+" Show current line and column number
 set ruler
 
 " Underline current line
@@ -322,8 +321,9 @@ set statusline+=\ %P\     "percent through file
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn on spell checking
+" Disable/enable spell checking
 set nospell
+"set spell
 
 " Specify file to store words deemed correctly spelled -- NEED V7.4??
 "spellfile+=~/.vim/spell/en.utf-8.add
