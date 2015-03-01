@@ -439,3 +439,12 @@ function! LoadSession()
 		"let b:sessiondir = ""
 	"endif
 endfunction
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Local config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Local config (call again to override preferences)
+if filereadable(expand("~/.vimrc.local"))
+	source ~/.vimrc.local
+endif

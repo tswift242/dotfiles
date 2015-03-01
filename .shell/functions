@@ -28,6 +28,10 @@ extract() {
 	fi
 }
 
+lsre() {
+	ls $1 | grep -i -P $2
+}
+
 # get git branch for use in prompt
 parse_git_branch(){
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1] /';
