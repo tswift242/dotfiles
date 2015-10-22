@@ -1,10 +1,11 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vundle
+" Plugins (managed by Vundle)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" :PluginList		- list bundles
-" :PluginInstall	- install/update bundles
-" :PluginClean		- remove bundles
-" :PluginSearch		- search for bundle
+" :PluginList		- list plugins
+" :PluginInstall	- install plugins
+" :PluginUpdate		- update plugins
+" :PluginClean		- remove plugins
+" :PluginSearch		- search for plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set nocompatible " use vim settings instead of vi settings (required)
@@ -33,8 +34,10 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc' " support plugin
 Plugin 'xolox/vim-shell' " needed for async tagging on Windows
-" syntax error highlighter
+" syntax error checker/highlighter
 Plugin 'scrooloose/syntastic'
+" enhanced statusline -- TODO: figure out how this works
+"Plugin 'bling/vim-airline'
 " easy commenting
 Plugin 'scrooloose/nerdcommenter'
 " show marks
@@ -52,8 +55,6 @@ Plugin 'vim-scripts/a.vim'
 "Plugin 'sukima/xmledit'
 " search tab completion
 Plugin 'SearchComplete'
-" enhanced statusline -- TODO: figure out how this works
-"Plugin 'bling/vim-airline'
 " TODO: check out vim-fugitive
 
 " Local config (may have plugins)
@@ -75,7 +76,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CtrlP
+""" CtrlP """
 let g:ctrlp_by_filename = 1
 "let g:ctrlp_root_markers = ['pom.xml', 'build.xml', 'Makefile']
 let g:ctrlp_custom_ignore = {
@@ -83,25 +84,6 @@ let g:ctrlp_custom_ignore = {
 	\ 'file': '\v\.(exe|dll|so|class|o|pyc|zip|tar|rar|jar)$',
 	\ }
 
-" Syntastic
-"let g:syntastic_check_on_open=1 "check for errors when opening file
-let g:syntastic_mode_map = { 'mode': 'passive'} "only find errors when asked
-
-" Multiple Cursors
-"let g:multi_cursor_use_default_mapping=0
-"let g:multi_cursor_next_key='<C-n>'
-"let g:multi_cursor_prev_key='<C-p>'
-"let g:multi_cursor_quit_key='ii'
-
-" Airline
-"let g:airline#extensions#tabline#enabled = 1
-
-" Easytags
-let g:easytags_async = 1
-let g:easytags_resolve_links = 1
-"let g:easytags_always_enabled = 1 " too slow
-
-" The Silver Searcher
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
@@ -114,6 +96,28 @@ if executable('ag')
 endif
 
 
+""" Easytags """
+let g:easytags_async = 1
+let g:easytags_resolve_links = 1
+"let g:easytags_always_enabled = 1 " too slow
+
+
+""" Syntastic """
+"let g:syntastic_check_on_open=1 "check for errors when opening file
+let g:syntastic_mode_map = { 'mode': 'passive'} "only find errors when asked
+
+
+""" Airline """
+"let g:airline#extensions#tabline#enabled = 1
+
+
+""" Multiple Cursors """
+"let g:multi_cursor_use_default_mapping=0
+"let g:multi_cursor_next_key='<C-n>'
+"let g:multi_cursor_prev_key='<C-p>'
+"let g:multi_cursor_quit_key='ii'
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -124,8 +128,6 @@ set history=500
 filetype on "detect file type
 filetype plugin on "load filetype plugins
 filetype indent on "load file-specific indent files
-" use shell syntax coloring for all files in ~/.bash -- TODO: not working
-autocmd BufRead,BufNewFile ~/dotfiles/.bash/*,~/.bash/* set syntax=sh
 
 " Update file when modified elsewhere on leaving buffer
 set autoread
@@ -154,7 +156,7 @@ let mapleader = ","
 " Show line numbers
 set number
 
-" Show current line number and column
+" Show current line and column number
 set ruler
 
 " Underline current line
@@ -322,8 +324,9 @@ set statusline+=\ %P\     "percent through file
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn on spell checking
+" Disable/enable spell checking
 set nospell
+"set spell
 
 " Specify file to store words deemed correctly spelled -- NEED V7.4??
 "spellfile+=~/.vim/spell/en.utf-8.add
