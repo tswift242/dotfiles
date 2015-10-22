@@ -1,7 +1,3 @@
-mkcd() {
-	mkdir "$1" && cd "$1";
-}
-
 # one function to extract any archive file
 extract() {
 	if [ $# -ne 1 ]; then
@@ -28,8 +24,22 @@ extract() {
 	fi
 }
 
+mkcd() {
+	mkdir "$1" && cd "$1";
+}
+
 lsre() {
 	ls $1 | grep -i -P $2
+}
+
+# display "contents" of file, regardless of whether that file is directory
+# or a regular file
+disp() {
+	if [ -d $1 ]; then
+		ls $1
+	else
+		cat $1
+	fi
 }
 
 # get git branch for use in prompt
