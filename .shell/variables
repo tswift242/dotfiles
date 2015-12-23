@@ -1,6 +1,6 @@
 ### History Options ###
 # Increase history from default of 500
-export HISTSIZE=5000
+export HISTSIZE=50000
 
 ### Miscellaneous ###
 # Language and locale

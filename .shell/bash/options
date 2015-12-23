@@ -1,6 +1,33 @@
-# Use case-insensitive filename globbing
-shopt -s nocaseglob
+##########################
+# Smarter tab-completion #
+##########################
+
+# Display matches for ambiguous patterns at first tab press
+bind "set show-all-if-ambiguous on"
+
+# Perform file completion in a case-insensitive fashion
+bind "set completion-ignore-case on"
+
+#######################################
+# Better, faster directory navigation #
+#######################################
+
+# When changing directory, small typos can be ignored by bash
+shopt -s cdspell
+
+#########################
+# Sane History Defaults #
+#########################
+
 # Append to history instead of overwriting
 shopt -s histappend
-# When changing directory small typos can be ignored by bash
-shopt -s cdspell
+
+# Save multi-line commands as one command
+shopt -s cmdhist
+
+#########
+# Other #
+#########
+
+# Use case-insensitive filename globbing
+shopt -s nocaseglob
