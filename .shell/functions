@@ -58,3 +58,7 @@ translate ()
 		echo "Sorry, I can not translate \"${1}\" to ${2}"
 	fi
 }
+
+dexec() {
+	docker exec -it $1 bash
+}
