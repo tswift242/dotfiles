@@ -7,7 +7,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
-alias diff="colordiff"
+alias diff="colordiff --ignore-space-change"
 
 # Colorize grep
 alias grep="grep --color=always"
